@@ -9,8 +9,16 @@ void lectura(char productos[10][50], float precios[10]){
     {
         printf("ingresa el nombre del producto %d: ",i+1);
         scanf("%s", productos[i]);
-        printf("Ingrese el precio del %s: ", productos[i]);
-        scanf("%f", &precios[i]);
+        
+        //control de precios 
+        do {
+            printf("Ingrese el precio del %s: ", productos[i]);
+            scanf("%f", &precios[i]);
+            if (precios[i] < 0) {
+                printf("El precio no puede ser negativo. Intenta de nuevo.\n");
+            }
+        } while (precios[i] < 0);
+        
         i++;
     } while (i<10);
 }
@@ -56,7 +64,7 @@ float promedio(float precios[10]){
     return promedio;
 }   
     
-//buscar un producto por su nombre y por su precio
+//buscar un producto por su nombre y hallar su precio
 void buscarProducto(char productos[10][50], float precios[10], char nombre[50]) {
     for (int i = 0; i < 10; i++) {
         if (strcmp(productos[i], nombre) == 0) { // Comparar cadenas
